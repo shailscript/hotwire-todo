@@ -8,8 +8,21 @@ export default class TasksController extends Controller {
 
   toggleCompleted(event) {
     const id = event.target.dataset.id;
-    console.log('🚀 ~ file: tasks_controller.js ~ line 11 ~ id', id);
     const completed = event.target.checked;
-    console.log('🚀 ~ file: tasks_controller.js ~ line 12 ~ completed', completed);
+    const csrfToken = document.querySelector("[name='csrf-token']").content
+
+    fetch(`/tasks/${id}/toggle`, {
+      method: 'POST',
+      mode: 'cors',
+      cache: 'no-cache',
+      credentials: 'same-origin',
+      headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': csrfToken
+      },
+      body: JSON.stringify({ completed })
+    })
+    .then(response => response.json())
+    .then(console.log)
   }
 }

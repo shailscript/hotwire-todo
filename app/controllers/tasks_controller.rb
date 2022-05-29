@@ -16,6 +16,13 @@ class TasksController < ApplicationController
     end
   end
 
+  def toggle
+    @task = Task.find(params[:id])
+    @task.update_attribute(:completed, params[:completed])
+
+    render json: { message: "Task was successfully updated" }
+  end
+
   private
 
   def task_params
