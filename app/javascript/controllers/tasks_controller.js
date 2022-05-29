@@ -17,8 +17,8 @@ export default class TasksController extends Controller {
       cache: 'no-cache',
       credentials: 'same-origin',
       headers: {
-          'Content-Type': 'application/json',
-          'X-CSRF-Token': csrfToken
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': csrfToken
       },
       body: JSON.stringify({ completed })
     })
